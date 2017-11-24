@@ -1,7 +1,10 @@
 [package]
 authors = ["Vinzent Steinberg <Vinzent.Steinberg@gmail.com>"]
 name = "latex-to-unicode"
+description = "Convert LaTeX to Unicode"
 version = "0.1.0"
+license = "MIT/Apache-2.0"
+repository = "https://github.com/vks/latex-to-unicode"
 
 [dependencies]
 lazy_static = "0.2"
