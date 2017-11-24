@@ -1,358 +1,75 @@
 #[macro_use]
 extern crate lazy_static;
 
-lazy_static! {
-    static ref LATEX_SYMBOLS: Vec<(&'static str, &'static str)> = vec![
-        (r"\texttrademark", "™"),
-        (r"\trademark", "™"),
-        (r"\textregistered", "®"),
-        (r"\registered", "®"),
-        (r"\copyright", "©"),
-        (r"\pilcrow", "¶"),
-        (r"\pound", "£"),
-        (r"\euro", "€"),
-        (r"\cents", "¢"),
-        (r"\section", "§"),
-        (r"\space", "␣"),
-        (r"\degree", "°"),
-        (r"\zeta", "ζ"),
-        (r"\Xi", "Ξ"),
-        (r"\xi", "ξ"),
-        (r"\wr", "≀"),
-        (r"\wp", "℘"),
-        (r"\wedge", "∧"),
-        (r"\Vvdash", "⊪"),
-        (r"\veebar", "⊻"),
-        (r"\vee", "∨"),
-        (r"\vdots", "⋮"),
-        (r"\Vdash", "⊩"),
-        (r"\vDash", "⊨"),
-        (r"\vdash", "⊢"),
-        (r"\vartriangleright", "⊳"),
-        (r"\vartriangleleft", "⊲"),
-        (r"\vartriangle", "△"),
-        (r"\vartheta", "ϑ"),
-        (r"\varsigma", "ς"),
-        (r"\varrho", "ϱ"),
-        (r"\varpropto", "∝"),
-        (r"\varpi", "ϖ"),
-        (r"\varphi", "φ"),
-        (r"\varnothing", "∅"),
-        (r"\varkappa", "ϰ"),
-        (r"\varepsilon", "ε"),
-        (r"\upuparrows", "⇈"),
-        (r"\Upsilon", "Υ"),
-        (r"\upsilon", "υ"),
-        (r"\uplus", "⊎"),
-        (r"\upharpoonright", "↾"),
-        (r"\upharpoonleft", "↿"),
-        (r"\Updownarrow", "⇕"),
-        (r"\updownarrow", "↕"),
-        (r"\Uparrow", "⇑"),
-        (r"\uparrow", "↑"),
-        (r"\unrhd", "⊵"),
-        (r"\unlhd", "⊴"),
-        (r"\twoheadrightarrow", "↠"),
-        (r"\twoheadleftarrow", "↞"),
-        (r"\trianglerighteq", "⊵"),
-        (r"\triangleright", "▷"),
-        (r"\triangleq", "≜"),
-        (r"\trianglelefteq", "⊴"),
-        (r"\triangleleft", "◁"),
-        (r"\triangledown", "▽"),
-        (r"\triangle", "△"),
-        (r"\top", "⊤"),
-        (r"\times", "×"),
-        (r"\thicksim", "∼"),
-        (r"\thickapprox", "≈"),
-        (r"\Theta", "Θ"),
-        (r"\theta", "θ"),
-        (r"\therefore", "∴"),
-        (r"\tau", "τ"),
-        (r"\swarrow", "↙"),
-        (r"\surd", "√"),
-        (r"\supseteq", "⊇"),
-        (r"\Supset", "⋑"),
-        (r"\supset", "⊃"),
-        (r"\sum", "∑"),
-        (r"\succsim", "≿"),
-        (r"\succeq", "⪰"),
-        (r"\succcurlyeq", "≽"),
-        (r"\succ", "≻"),
-        (r"\subseteq", "⊆"),
-        (r"\Subset", "⋐"),
-        (r"\subset", "⊂"),
-        (r"\star", "⋆"),
-        (r"\square", "□"),
-        (r"\sqsupseteq", "⊒"),
-        (r"\sqsupset", "⊐"),
-        (r"\sqsubseteq", "⊑"),
-        (r"\sqsubset", "⊏"),
-        (r"\sqcup", "⊔"),
-        (r"\sqcap", "⊓"),
-        (r"\sphericalangle", "∢"),
-        (r"\spadesuit", "♠"),
-        (r"\smile", "⌣"),
-        (r"\smallsmile", "⌣"),
-        (r"\smallsetminus", "∖"),
-        (r"\smallfrown", "⌢"),
-        (r"\simeq", "≃"),
-        (r"\sim", "∼"),
-        (r"\sigma", "σ"),
-        (r"\shortparallel", "∥"),
-        (r"\sharp", "♯"),
-        (r"\setminus", "∖"),
-        (r"\searrow", "↘"),
-        (r"\rtimes", "⋊"),
-        (r"\Rsh", "↱"),
-        (r"\Rrightarrow", "⇛"),
-        (r"\risingdotseq", "≓"),
-        (r"\rightthreetimes", "⋌"),
-        (r"\rightsquigarrow", "⇝"),
-        (r"\rightrightarrows", "⇉"),
-        (r"\rightleftharpoons", "⇌"),
-        (r"\rightleftarrows", "⇄"),
-        (r"\rightharpoonup", "⇀"),
-        (r"\rightharpoondown", "⇁"),
-        (r"\rightarrowtail", "↣"),
-        (r"\Rightarrow", "⇒"),
-        (r"\rightarrow", "→"),
-        (r"\rho", "ρ"),
-        (r"\rhd", "⊳"),
-        (r"\rfloor", "⌋"),
-        (r"\Re", "ℜ"),
-        (r"\rceil", "⌉"),
-        (r"\Psi", "Ψ"),
-        (r"\psi", "ψ"),
-        (r"\propto", "∝"),
-        (r"\prod", "∏"),
-        (r"\prime", "′"),
-        (r"\precsim", "≾"),
-        (r"\preceq", "⪯"),
-        (r"\preccurlyeq", "≼"),
-        (r"\prec", "≺"),
-        (r"\pm", "±"),
-        (r"\Pi", "Π"),
-        (r"\pi", "π"),
-        (r"\pitchfork", "⋔"),
-        (r"\Phi", "Φ"),
-        (r"\phi", "ϕ"),
-        (r"\perp", "⊥"),
-        (r"\partial", "∂"),
-        (r"\parallel", "∥"),
-        (r"\otimes", "⊗"),
-        (r"\oslash", "⊘"),
-        (r"\oplus", "⊕"),
-        (r"\ominus", "⊖"),
-        (r"\Omega", "Ω"),
-        (r"\omega", "ω"),
-        (r"\oint", "∮"),
-        (r"\odot", "⊙"),
-        (r"\nwarrow", "↖"),
-        (r"\nu", "ν"),
-        (r"\notin", "∉"),
-        (r"\ni", "∋"),
-        (r"\nexists", "∄"),
-        (r"\neq", "≠"),
-        (r"\neg", "¬"),
-        (r"\nearrow", "↗"),
-        (r"\natural", "♮"),
-        (r"\nabla", "∇"),
-        (r"\mu", "μ"),
-        (r"\multimap", "⊸"),
-        (r"\mp", "∓"),
-        (r"\models", "⊨"),
-        (r"\mid", "∣"),
-        (r"\mho", "℧"),
-        (r"\measuredangle", "∡"),
-        (r"\mapsto", "↦"),
-        (r"\ltimes", "⋉"),
-        (r"\Lsh", "↰"),
-        (r"\lozenge", "◊"),
-        (r"\looparrowright", "↬"),
-        (r"\looparrowleft", "↫"),
-        (r"\Longrightarrow", "⟹"),
-        (r"\longrightarrow", "⟶"),
-        (r"\longmapsto", "⟼"),
-        (r"\Longleftrightarrow", "⟺"),
-        (r"\longleftrightarrow", "⟷"),
-        (r"\Longleftarrow", "⟸"),
-        (r"\longleftarrow", "⟵"),
-        (r"\lll", "⋘"),
-        (r"\Lleftarrow", "⇚"),
-        (r"\ll", "≪"),
-        (r"\lhd", "⊲"),
-        (r"\lfloor", "⌊"),
-        (r"\lesssim", "≲"),
-        (r"\lessgtr", "≶"),
-        (r"\lesseqgtr", "⋚"),
-        (r"\lessdot", "⋖"),
-        (r"\leqslant", "⩽"),
-        (r"\leqq", "≦"),
-        (r"\leq", "≤"),
-        (r"\leftthreetimes", "⋋"),
-        (r"\leftrightsquigarrow", "↭"),
-        (r"\leftrightharpoons", "⇋"),
-        (r"\leftrightarrows", "⇆"),
-        (r"\Leftrightarrow", "⇔"),
-        (r"\leftrightarrow", "↔"),
-        (r"\leftleftarrows", "⇇"),
-        (r"\leftharpoonup", "↼"),
-        (r"\leftharpoondown", "↽"),
-        (r"\leftarrowtail", "↢"),
-        (r"\Leftarrow", "⇐"),
-        (r"\leftarrow", "←"),
-        (r"\leadsto", "↝"),
-        (r"\le", "≤"),
-        (r"\lceil", "⌈"),
-        (r"\Lambda", "Λ"),
-        (r"\lambda", "λ"),
-        (r"\kappa", "κ"),
-        (r"\Join", "⋈"),
-        (r"\iota", "ι"),
-        (r"\intercal", "⊺"),
-        (r"\int", "∫"),
-        (r"\infty", "∞"),
-        (r"\in", "∈"),
-        (r"\implies", "⇒"),
-        (r"\Im", "ℑ"),
-        (r"\hslash", "ℏ"),
-        (r"\hookrightarrow", "↪"),
-        (r"\hookleftarrow", "↩"),
-        (r"\heartsuit", "♡"),
-        (r"\hbar", "ℏ"),
-        (r"\gtrsim", "≳"),
-        (r"\gtrless", "≷"),
-        (r"\gtreqless", "⋛"),
-        (r"\gtrdot", "⋗"),
-        (r"\gimel", "ℷ"),
-        (r"\ggg", "⋙"),
-        (r"\gg", "≫"),
-        (r"\geqq", "≧"),
-        (r"\geq", "≥"),
-        (r"\ge", "≥"),
-        (r"\Gamma", "Γ"),
-        (r"\gamma", "γ"),
-        (r"\frown", "⌢"),
-        (r"\forall", "∀"),
-        (r"\flat", "♭"),
-        (r"\Finv", "Ⅎ"),
-        (r"\fallingdotseq", "≒"),
-        (r"\exists", "∃"),
-        (r"\eth", "ð"),
-        (r"\eta", "η"),
-        (r"\equiv", "≡"),
-        (r"\eqcirc", "≖"),
-        (r"\epsilon", "∊"),
-        (r"\emptyset", "∅"),
-        (r"\ell", "ℓ"),
-        (r"\downharpoonright", "⇂"),
-        (r"\downharpoonleft", "⇃"),
-        (r"\downdownarrows", "⇊"),
-        (r"\Downarrow", "⇓"),
-        (r"\downarrow", "↓"),
-        (r"\dots", "…"),
-        (r"\dotplus", "∔"),
-        (r"\doteqdot", "≑"),
-        (r"\doteq", "≐"),
-        (r"\divideontimes", "⋇"),
-        (r"\div", "÷"),
-        (r"\digamma", "Ϝ"),
-        (r"\diamondsuit", "♢"),
-        (r"\Diamond", "◇"),
-        (r"\diamond", "⋄"),
-        (r"\Delta", "Δ"),
-        (r"\delta", "δ"),
-        (r"\ddots", "⋱"),
-        (r"\ddagger", "‡"),
-        (r"\dashv", "⊣"),
-        (r"\dashrightarrow", "⇢"),
-        (r"\dashleftarrow", "⇠"),
-        (r"\daleth", "ℸ"),
-        (r"\dagger", "†"),
-        (r"\curvearrowright", "↷"),
-        (r"\curvearrowleft", "↶"),
-        (r"\curlywedge", "⋏"),
-        (r"\curlyvee", "⋎"),
-        (r"\curlyeqsucc", "⋟"),
-        (r"\curlyeqprec", "⋞"),
-        (r"\Cup", "⋓"),
-        (r"\cup", "∪"),
-        (r"\coprod", "∐"),
-        (r"\cong", "≅"),
-        (r"\complement", "∁"),
-        (r"\clubsuit", "♣"),
-        (r"\circledS", "Ⓢ"),
-        (r"\circleddash", "⊝"),
-        (r"\circledcirc", "⊚"),
-        (r"\circledast", "⊛"),
-        (r"\circlearrowright", "↻"),
-        (r"\circlearrowleft", "↺"),
-        (r"\circeq", "≗"),
-        (r"\circ", "∘"),
-        (r"\chi", "χ"),
-        (r"\centerdot", "⋅"),
-        (r"\cdots", "⋯"),
-        (r"\cdot", "⋅"),
-        (r"\Cap", "⋒"),
-        (r"\cap", "∩"),
-        (r"\Bumpeq", "≎"),
-        (r"\bumpeq", "≏"),
-        (r"\bullet", "∙"),
-        (r"\boxtimes", "⊠"),
-        (r"\boxplus", "⊞"),
-        (r"\boxminus", "⊟"),
-        (r"\boxdot", "⊡"),
-        (r"\Box", "□"),
-        (r"\bowtie", "⋈"),
-        (r"\bot", "⊥"),
-        (r"\blacktriangleright", "▶"),
-        (r"\blacktriangleleft", "◀"),
-        (r"\blacktriangledown", "▼"),
-        (r"\blacktriangle", "▲"),
-        (r"\blacksquare", "■"),
-        (r"\blacklozenge", "◆"),
-        (r"\bigwedge", "⋀"),
-        (r"\bigvee", "⋁"),
-        (r"\biguplus", "⨄"),
-        (r"\bigtriangleup", "△"),
-        (r"\bigtriangledown", "▽"),
-        (r"\bigstar", "★"),
-        (r"\bigsqcup", "⨆"),
-        (r"\bigotimes", "⨂"),
-        (r"\bigoplus", "⨁"),
-        (r"\bigodot", "⨀"),
-        (r"\bigcup", "⋃"),
-        (r"\bigcirc", "○"),
-        (r"\bigcap", "⋂"),
-        (r"\between", "≬"),
-        (r"\beth", "ℶ"),
-        (r"\beta", "β"),
-        (r"\because", "∵"),
-        (r"\barwedge", "⊼"),
-        (r"\backsim", "∽"),
-        (r"\backprime", "‵"),
-        (r"\backepsilon", "∍"),
-        (r"\asymp", "≍"),
-        (r"\ast", "∗"),
-        (r"\approxeq", "≊"),
-        (r"\approx", "≈"),
-        (r"\angle", "∠"),
-        (r"\alpha", "α"),
-        (r"\aleph", "ℵ"),
-    ];
+mod data;
+
+/// Convert latex expressions to their unicode representation.
+///
+/// Symbols, super- and subscripts and fonts are supported.
+pub fn convert(s: &str) -> String {
+    let s = convert_latex_symbols(s);
+    apply_all_modifiers(&s)
 }
 
-/// If `s` is just a latex code like "alpha", it is converted to its unicde
+/// Replace each "\alpha" and similar latex symbols with their unicode
 /// representation.
-fn convert_single_symbol(s: &str) -> Option<&'static str> {
-    let ss = String::from("\\") + s;
-    for &(code, val) in LATEX_SYMBOLS.iter() {
-        if code == ss {
-            return Some(val);
+pub fn convert_latex_symbols(s: &str) -> String {
+    let mut result = s.to_string();
+    for (&code, &val) in data::LATEX_SYMBOLS.iter() {
+        result = result.replace(code, val);
+    }
+    result
+}
+
+/// Replace super- and subcripts and fonts with their unicode representation.
+fn apply_all_modifiers(s: &str) -> String {
+    let s = apply_modifier(s, "^", &data::SUPERSCRIPTS);
+    let s = apply_modifier(&s, "_", &data::SUBSCRIPTS);
+    let s = apply_modifier(&s, "\\bb", &data::TEXTBB);
+    let s = apply_modifier(&s, "\\bf", &data::TEXTBF);
+    let s = apply_modifier(&s, "\\it", &data::TEXTIT);
+    let s = apply_modifier(&s, "\\cal", &data::TEXTCAL);
+    let s = apply_modifier(&s, "\\frak", &data::TEXTFRAK);
+    let s = apply_modifier(&s, "\\mono", &data::TEXTMONO);
+    s
+}
+
+type Map = std::collections::HashMap<char, char>;
+
+/// Apply a latex modifier using a given map.
+///
+/// Make sure to process "^" modifiers first.
+fn apply_modifier(s: &str, modifier: &str, map: &Map) -> String {
+    let s = s.clone().replace(modifier, "^");
+
+    enum Mode { Normal, Modified, Long }
+
+    let mut result = String::with_capacity(s.len());
+    let mut mode = Mode::Normal;
+    for ch in s.chars() {
+        match mode {
+            Mode::Normal if ch == '^' => {
+                mode = Mode::Modified;
+            },
+            Mode::Modified if ch == '{' => {
+                mode = Mode::Long;
+            },
+            Mode::Modified => {
+                result.push(*map.get(&ch).unwrap_or(&ch));
+                mode = Mode::Normal;
+            },
+            Mode::Long if ch == '}' => {
+                mode = Mode::Normal;
+            },
+            Mode::Normal => {
+                result.push(ch);
+            },
+            _ => {
+                result.push(*map.get(&ch).unwrap_or(&ch));
+            },
         }
     }
-    None
+    result
 }
 
 #[cfg(test)]
@@ -361,7 +78,6 @@ mod tests {
 
     #[test]
     fn single_symbol() {
-        assert_eq!(convert_single_symbol("alpha"), Some("α"));
-        assert_eq!(convert_single_symbol("alf"), None);
+        assert_eq!(convert(r"\alpha"), "α");
     }
 }
